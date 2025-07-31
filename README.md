@@ -35,12 +35,12 @@ accelerate launch \
   exp_name=zephyr_7b_beta_sft \
   ++cache_dir=cache_dir\
   ++model.name_or_path=model.name_or_path
-     ```
+    ```
 
 Your model will be saved to `/cache_dir/zephyr_7b_beta_sft`
 
 3.Modify the parameter of I in elodpo. In the /train/trainers file, the class ELODPOTrainer is:
-
+   ```
 class ELODPOTrainer(PairedPreferenceTrainer):
     def custom_logsigmoid(x, a):
         return torch.log(1 / (1 + torch.pow(a, -x)))
@@ -64,7 +64,7 @@ class ELODPOTrainer(PairedPreferenceTrainer):
 
         losses = -custom_logsigmoid(chosen_rewards - rejected_rewards,a)
         return losses, chosen_rewards.detach(), rejected_rewards.detach()
-
+   ```
 By modifying the if function within it, the change of the parameter I can be modified.
 
 
