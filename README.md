@@ -25,7 +25,7 @@ which will save a model to `/data/models/llama3-8b_sft_elodpo/FINAL`.
 
 2. We perform SFT training on the zephyr-7b-beta model using the Ultrafeedback dataset:
    ```console
-accelerate launch \
+   accelerate launch \
   --config_file accelerate_config/fsdp_8gpu.yaml \
   --main_process_port 29500 \
   launch.py \
@@ -35,7 +35,8 @@ accelerate launch \
   exp_name=zephyr_7b_beta_sft \
   ++cache_dir=cache_dir\
   ++model.name_or_path=model.name_or_path
-    ```
+   
+   ```
 
 Your model will be saved to `/cache_dir/zephyr_7b_beta_sft`
 
